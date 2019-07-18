@@ -1,0 +1,34 @@
+import Q = require("q");
+import Promise = Q.Promise;
+import * as codePush from "code-push/script/types";
+export declare class SdkStub {
+    private productionDeployment;
+    private stagingDeployment;
+    getAccountInfo(): Promise<codePush.Account>;
+    addAccessKey(name: string, ttl: number): Promise<codePush.AccessKey>;
+    patchAccessKey(oldName: string, newName?: string, newTtl?: number): Promise<codePush.AccessKey>;
+    addApp(name: string, os: string, platform: string, manuallyProvisionDeployments?: boolean): Promise<codePush.App>;
+    addCollaborator(name: string, email: string): Promise<void>;
+    addDeployment(appName: string, deploymentName: string): Promise<codePush.Deployment>;
+    clearDeploymentHistory(appName: string, deploymentName: string): Promise<void>;
+    getAccessKeys(): Promise<codePush.AccessKey[]>;
+    getSessions(): Promise<codePush.Session[]>;
+    getApps(): Promise<codePush.App[]>;
+    getDeployments(appName: string): Promise<codePush.Deployment[]>;
+    getDeployment(appName: string, deploymentName: string): Promise<codePush.Deployment>;
+    getDeploymentHistory(appName: string, deploymentName: string): Promise<codePush.Package[]>;
+    getDeploymentMetrics(appName: string, deploymentName: string): Promise<any>;
+    getCollaborators(app: codePush.App): Promise<any>;
+    patchRelease(appName: string, deployment: string, label: string, updateMetaData: codePush.PackageInfo): Promise<void>;
+    promote(appName: string, sourceDeployment: string, destinationDeployment: string, updateMetaData: codePush.PackageInfo): Promise<void>;
+    release(appName: string, deploymentName: string): Promise<string>;
+    removeAccessKey(accessKeyId: string): Promise<void>;
+    removeApp(appName: string): Promise<void>;
+    removeCollaborator(name: string, email: string): Promise<void>;
+    removeDeployment(appName: string, deploymentName: string): Promise<void>;
+    removeSession(createdBy: string): Promise<void>;
+    renameApp(app: codePush.App): Promise<void>;
+    rollback(appName: string, deployment: string, targetRelease: string): Promise<void>;
+    transferApp(app: codePush.App): Promise<void>;
+    renameDeployment(appName: string, deploymentName: codePush.Deployment): Promise<void>;
+}
